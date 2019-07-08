@@ -18,6 +18,7 @@ const HorizontalList = styled.div`
 
 const ItemList: React.FC = () => {
     const [items, setItems] = useState<Array<Array<Object | null | undefined>>>(Array(9).fill(null).map(() => new Array(9).fill(null)));
+    const [select, setSelect] = useState<Array<number> | null>(null);
 
     const MakeList = () => {
         setItems(items.map((item, i) => {

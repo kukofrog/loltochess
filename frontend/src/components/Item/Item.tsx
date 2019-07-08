@@ -36,6 +36,16 @@ const HoverNormalEffect = styled.p`
     margin: 0;
 `
 
+const HoverIconWrapper = styled.div`
+    display: flex;
+`
+
+const HoverIcon = styled.img`
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+`
+
 const Wrapper = styled.div`
     position: relative;
     width: 50px;
@@ -60,7 +70,16 @@ interface ItemProps {
         image?: string,
         name?: string | null,
         effect?: string,
-        combination?: Object
+        combination?: {
+            first_item: {
+                image: string,
+                name: string
+            },
+            second_item: {
+                image: string,
+                name: string
+            }
+        }
     } | null;
     index: number[];
 }
@@ -71,14 +90,29 @@ const Item = ({item, index}: ItemProps) => {
             <Wrapper />
         )
     }
+
+    const CombinationItemInfo = () => {
+        if(item.combination && index[0] !== 0 && index[1] !== 0){
+            return (
+                <>
+                    <HoverNormalEffect>{index[1] !== 8?NormalItem[index[1]-1].effect:``}</HoverNormalEffect>
+                    <HoverNormalEffect>{index[0] !== 8?NormalItem[index[0]-1].effect:``}</HoverNormalEffect>
+                    <HoverIconWrapper>
+                        <HoverIcon src={item.combination.first_item.image} />
+                        <HoverIcon src={item.combination.second_item.image} />
+                    </HoverIconWrapper>
+                </>
+            );
+        }
+    }
+
     return (
         <Wrapper>
             <HoverDiv>
                 <HoverWrapper>
                     <HoverName>{item.name}</HoverName>
                     <HoverEffect>{item.effect}</HoverEffect>
-                    <HoverNormalEffect>{(index[1] !== 0 && index[1] !== 8)?NormalItem[index[1]-1].effect:``}</HoverNormalEffect>
-                    <HoverNormalEffect>{(index[0] !== 0 && index[0] !== 8)?NormalItem[index[0]-1].effect:``}</HoverNormalEffect>
+                    {CombinationItemInfo()}
                 </HoverWrapper>
             </HoverDiv>
             <Img src={item?item.image:``} normal={index[0] === 0 || index[1] === 0?1:0}/>
