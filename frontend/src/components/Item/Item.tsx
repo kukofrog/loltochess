@@ -20,7 +20,7 @@ interface ItemProps {
         name?: string,
         effect?: string,
         combination?: Object
-    };
+    } | null;
     index: number[];
 }
 

@@ -40,28 +40,15 @@ const ItemList: React.FC = () => {
     }, []);
 
     return (
-        <>
-        {console.log(items)}
         <VerticalList>
-            {
-                items.map((list, i) => {
-                    return (
-                        <HorizontalList key={i}>
-                            {
-                                list.map((item, j) => {
-                                    if(item == null){
-                                        return <Item key={j} index={[i,j]}/>
-                                    } else {
-                                        return <Item item={item} key={j} index={[i,j]}/>
-                                    }
-                                })
-                            }
-                        </HorizontalList>
-                    )
-                })
-            }
+            {items.map((list, i) => {
+                return (
+                    <HorizontalList key={i}>
+                        {list.map((item, j) => <Item item={item} key={j} index={[i,j]}/>)}
+                    </HorizontalList>
+                )
+            })}
         </VerticalList>
-        </>
     );
 };
 
