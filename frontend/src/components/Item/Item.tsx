@@ -82,9 +82,11 @@ interface ItemProps {
         }
     } | null;
     index: number[];
+    select?: number[] | null;
+    setSelect?: any;
 }
 
-const Item = ({item, index}: ItemProps) => {
+const Item = ({item, index, setSelect}: ItemProps) => {
     if(item == null){
         return (
             <Wrapper />
