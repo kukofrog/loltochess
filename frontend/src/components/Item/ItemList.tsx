@@ -5,6 +5,17 @@ import oc from 'open-color';
 import NomalItem from 'data/NomalItem';
 import CombinationItem from 'data/CombinationItem';
 
+import Item from './Item';
+
+const VerticalList = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const HorizontalList = styled.div`
+    display: flex;
+`
+
 const ItemList: React.FC = () => {
     const [items, setItems] = useState<Array<Array<Object | null | undefined>>>(Array(9).fill(null).map(() => new Array(9).fill(null)));
 
@@ -16,14 +27,9 @@ const ItemList: React.FC = () => {
                 } else if (i === 0) {
                     return NomalItem[j-1];
                 } else {
-                    let findItem = null;
-                    CombinationItem.forEach((CItem) => {
-                        if ((CItem.combination.first_item.name === NomalItem[i-1].name && CItem.combination.second_item.name === NomalItem[j-1].name) 
-                        || (CItem.combination.first_item.name === NomalItem[j-1].name && CItem.combination.second_item.name === NomalItem[i-1].name)){
-                            findItem = CItem;
-                        }
-                    })
-                    return findItem;
+                    return CombinationItem.find((CItem) => ((CItem.combination.first_item.name === NomalItem[i-1].name && CItem.combination.second_item.name === NomalItem[j-1].name) 
+                        || (CItem.combination.first_item.name === NomalItem[j-1].name && CItem.combination.second_item.name === NomalItem[i-1].name))
+                    ) 
                 }
             });
         }));
@@ -36,6 +42,25 @@ const ItemList: React.FC = () => {
     return (
         <>
         {console.log(items)}
+        <VerticalList>
+            {
+                items.map((list, i) => {
+                    return (
+                        <HorizontalList key={i}>
+                            {
+                                list.map((item, j) => {
+                                    if(item == null){
+                                        return <Item key={j} index={[i,j]}/>
+                                    } else {
+                                        return <Item item={item} key={j} index={[i,j]}/>
+                                    }
+                                })
+                            }
+                        </HorizontalList>
+                    )
+                })
+            }
+        </VerticalList>
         </>
     );
 };
