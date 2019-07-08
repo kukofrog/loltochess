@@ -29,7 +29,7 @@ const ItemList: React.FC = () => {
                 } else {
                     return CombinationItem.find((CItem) => ((CItem.combination.first_item.name === NomalItem[i-1].name && CItem.combination.second_item.name === NomalItem[j-1].name) 
                         || (CItem.combination.first_item.name === NomalItem[j-1].name && CItem.combination.second_item.name === NomalItem[i-1].name))
-                    ) 
+                    )
                 }
             });
         }));
