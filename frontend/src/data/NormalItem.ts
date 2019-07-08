@@ -1,4 +1,4 @@
-const NomalItem = [
+const NormalItem = [
   {
     image: "https://ddragon.leagueoflegends.com/cdn/9.12.1/img/item/1038.png",
     name: "B.F. 대검",
@@ -49,4 +49,4 @@ const NomalItem = [
   }
 ];
 
-export default NomalItem;
+export default NormalItem;

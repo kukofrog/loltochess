@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, useReducer} from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 
-import NomalItem from 'data/NomalItem';
+import NormalItem from 'data/NormalItem';
 import CombinationItem from 'data/CombinationItem';
 
 import Item from './Item';
@@ -23,12 +23,12 @@ const ItemList: React.FC = () => {
         setItems(items.map((item, i) => {
             return item.map((data, j) => {
                 if(j === 0) {
-                    return NomalItem[i-1];
+                    return NormalItem[i-1];
                 } else if (i === 0) {
-                    return NomalItem[j-1];
+                    return NormalItem[j-1];
                 } else {
-                    return CombinationItem.find((CItem) => ((CItem.combination.first_item.name === NomalItem[i-1].name && CItem.combination.second_item.name === NomalItem[j-1].name) 
-                        || (CItem.combination.first_item.name === NomalItem[j-1].name && CItem.combination.second_item.name === NomalItem[i-1].name))
+                    return CombinationItem.find((CItem) => ((CItem.combination.first_item.name === NormalItem[i-1].name && CItem.combination.second_item.name === NormalItem[j-1].name) 
+                        || (CItem.combination.first_item.name === NormalItem[j-1].name && CItem.combination.second_item.name === NormalItem[i-1].name))
                     )
                 }
             });
