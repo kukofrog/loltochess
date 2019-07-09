@@ -1,6 +1,5 @@
-import React, {useState, useEffect, useContext, useReducer} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import oc from 'open-color';
 
 import NormalItem from 'data/NormalItem';
 import CombinationItem from 'data/CombinationItem';
@@ -50,7 +49,6 @@ const ItemList: React.FC = () => {
     return (
         <Wrapper>
             <VerticalList>
-                {console.log(select)}
                 {items.map((list, i) => {
                     return (
                         <HorizontalList key={i}>

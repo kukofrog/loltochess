@@ -1,18 +1,21 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
 
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from 'react-router-dom';
 import { Home } from 'pages';
+
+import HeaderContainer from 'components/header/HeaderContainer';
 
 const history = createBrowserHistory();
 
 const App: React.FC = () => {
   return (
-      <Router history={history}>
-        <Switch>
-          <Route path='/' component={Home} />
-        </Switch>
-      </Router>
+    <Router history={history}>
+      <HeaderContainer />
+      <Switch>
+        <Route path='/' component={Home} />
+      </Switch>
+    </Router>
   );
 }
 
