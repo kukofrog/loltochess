@@ -10,7 +10,7 @@ import Item from './Item';
 const Wrapper = styled.div`
     width: 100%;
     height: 100%;
-    padding: 200px 200px;
+    padding: 100px 200px;
     box-sizing: border-box;
 `
 

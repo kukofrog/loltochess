@@ -12,9 +12,9 @@ interface Props {
 const HoverDiv = styled.div`
     display: none;
     position: absolute;
-    bottom: 60px;
-    left: -25px;
-    width: 200px;
+    bottom: 80px;
+    left: 0;
+    width: 300px;
     background: ${oc.gray[8]};
 `
 
@@ -25,16 +25,19 @@ const HoverWrapper = styled.div`
 const HoverName = styled.p`
     color: ${oc.yellow[7]};
     margin: 0;
+    font-size: 1rem;
 `
 
 const HoverEffect = styled.p`
     color: white;
     margin: 0;
+    font-size: 1rem;
 `
 
 const HoverNormalEffect = styled.p`
-    color: ${oc.gray[2]};
+    color: ${oc.gray[6]};
     margin: 0;
+    font-size: 0.8rem;
 `
 
 const HoverIconWrapper = styled.div`
@@ -49,20 +52,21 @@ const HoverIcon = styled.img`
 
 const Wrapper = styled.div`
     position: relative;
-    width: 50px;
-    height: 50px;
-    margin: 1px;
+    width: 70px;
+    height: 70px;
+    margin: 3px;
     &:hover{
         ${HoverDiv} {
             display: block;
         }
     }
+    cursor: pointer;
 `
 
 const Mask = styled.div`
     width: 100%;
     height: 100%;
-    ${(props: Props) => props.itemState === 'none'?`opacity: 0.4;`:``};
+    ${(props: Props) => props.itemState === 'none'?`opacity: 0.2;`:``};
 `
 
 const Img = styled.img`
@@ -105,10 +109,10 @@ const Item = ({item, index, select, setSelect}: ItemProps) => {
             setItemState('selected');
             return;
         }
-        else if((select[0] === index[0] && index[0] === 0) || (select[1] === index[1] && index[1] === 0)){
+        else if((select[0] === index[0] && index[1] === 0) || (select[1] === index[1] && index[0] === 0)){
             setItemState('material');
         }
-        else if(select[0] === index[0] || select[1] === index[1]){
+        else if((select[0] === index[0] && index[0] !== 0) || (select[1] === index[1] && index[1] !== 0) || (select[0] === 0 && index[1] === 0) || (select[1] === 0 && index[0] === 0)){
             setItemState('line');
         }
         else {
@@ -130,6 +134,7 @@ const Item = ({item, index, select, setSelect}: ItemProps) => {
                     <HoverNormalEffect>{index[0] !== 8?NormalItem[index[0]-1].effect:``}</HoverNormalEffect>
                     <HoverIconWrapper>
                         <HoverIcon src={item.combination.first_item.image} />
+                        <HoverEffect> + </HoverEffect>
                         <HoverIcon src={item.combination.second_item.image} />
                     </HoverIconWrapper>
                 </>
@@ -137,8 +142,20 @@ const Item = ({item, index, select, setSelect}: ItemProps) => {
         }
     }
 
+    const handleSelect = () => {
+        if(select == null) {
+            setSelect(index)
+        }
+        else if(select[0] === index[0] && select[1] === index[1]) {
+            setSelect(null)
+        }
+        else {
+            setSelect(index)
+        }
+    }
+
     return (
-        <Wrapper onClick={() => setSelect(index)}>
+        <Wrapper onClick={handleSelect}>
             <HoverDiv>
                 <HoverWrapper>
                     <HoverName>{item.name}</HoverName>
