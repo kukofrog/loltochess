@@ -6,16 +6,39 @@ import NormalItem from 'data/NormalItem';
 
 interface Props {
     normal?: number,
-    itemState?: string | null
+    itemState?: string | null,
+    hover?: boolean
 }
 
+const Wrapper = styled.div`
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: 3px;
+    cursor: pointer;
+`
+
+const Mask = styled.div`
+    width: 100%;
+    height: 100%;
+    ${(props: Props) => props.itemState === 'none'?`opacity: 0.2;`:``};
+`
+
+const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    ${(props: Props) => props.normal?`border-radius:50%`:``}
+`
+
 const HoverDiv = styled.div`
-    display: none;
     position: absolute;
     bottom: 80px;
     left: 0;
     width: 300px;
     background: ${oc.gray[8]};
+    opacity: 0.95;
+    display: ${(props: Props) => props.hover?`block`:`none`};
 `
 
 const HoverWrapper = styled.div`
@@ -50,32 +73,6 @@ const HoverIcon = styled.img`
     border-radius: 50%;
 `
 
-const Wrapper = styled.div`
-    position: relative;
-    width: 70px;
-    height: 70px;
-    margin: 3px;
-    &:hover{
-        ${HoverDiv} {
-            display: block;
-        }
-    }
-    cursor: pointer;
-`
-
-const Mask = styled.div`
-    width: 100%;
-    height: 100%;
-    ${(props: Props) => props.itemState === 'none'?`opacity: 0.2;`:``};
-`
-
-const Img = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    ${(props: Props) => props.normal?`border-radius:50%`:``}
-`
-
 interface ItemProps {
     item?: {
         image?: string,
@@ -99,6 +96,7 @@ interface ItemProps {
 
 const Item = ({item, index, select, setSelect}: ItemProps) => {
     const [itemState, setItemState] = useState<string | null>(null);
+    const [hover, setHover] = useState<boolean>(false);
 
     useEffect(() => {
         if(select == null){
@@ -154,16 +152,20 @@ const Item = ({item, index, select, setSelect}: ItemProps) => {
         }
     }
 
+    const toggleHover = () => {
+        setHover(!hover);
+    }
+
     return (
         <Wrapper onClick={handleSelect}>
-            <HoverDiv>
+            <HoverDiv hover={hover}>
                 <HoverWrapper>
                     <HoverName>{item.name}</HoverName>
                     <HoverEffect>{item.effect}</HoverEffect>
                     {CombinationItemInfo()}
                 </HoverWrapper>
             </HoverDiv>
-            <Mask itemState={itemState}>
+            <Mask itemState={itemState} onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
                 <Img src={item?item.image:``} normal={index[0] === 0 || index[1] === 0?1:0}/>
             </Mask>
         </Wrapper>
