@@ -7,6 +7,13 @@ import CombinationItem from 'data/CombinationItem';
 
 import Item from './Item';
 
+const Wrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 200px 200px;
+    box-sizing: border-box;
+`
+
 const VerticalList = styled.div`
     display: flex;
     flex-direction: column;
@@ -41,15 +48,18 @@ const ItemList: React.FC = () => {
     }, []);
 
     return (
-        <VerticalList>
-            {items.map((list, i) => {
-                return (
-                    <HorizontalList key={i}>
-                        {list.map((item, j) => <Item item={item} index={[i,j]} select={select} setSelect={setSelect} key={j}/>)}
-                    </HorizontalList>
-                )
-            })}
-        </VerticalList>
+        <Wrapper>
+            <VerticalList>
+                {console.log(select)}
+                {items.map((list, i) => {
+                    return (
+                        <HorizontalList key={i}>
+                            {list.map((item, j) => <Item item={item} index={[i,j]} select={select} setSelect={setSelect} key={j}/>)}
+                        </HorizontalList>
+                    )
+                })}
+            </VerticalList>
+        </Wrapper>
     );
 };
 

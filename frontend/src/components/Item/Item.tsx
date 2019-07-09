@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 
 import NormalItem from 'data/NormalItem';
 
 interface Props {
-    normal?: number
+    normal?: number,
+    itemState?: string | null
 }
 
 const HoverDiv = styled.div`
@@ -58,11 +59,17 @@ const Wrapper = styled.div`
     }
 `
 
+const Mask = styled.div`
+    width: 100%;
+    height: 100%;
+    ${(props: Props) => props.itemState === 'none'?`opacity: 0.4;`:``};
+`
+
 const Img = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    ${(props: Props) =>props.normal?`border-radius:50%`:``}
+    ${(props: Props) => props.normal?`border-radius:50%`:``}
 `
 
 interface ItemProps {
@@ -86,7 +93,29 @@ interface ItemProps {
     setSelect?: any;
 }
 
-const Item = ({item, index, setSelect}: ItemProps) => {
+const Item = ({item, index, select, setSelect}: ItemProps) => {
+    const [itemState, setItemState] = useState<string | null>(null);
+
+    useEffect(() => {
+        if(select == null){
+            setItemState(null);
+            return;
+        }
+        else if(select[0] === index[0] && select[1] === index[1]) {
+            setItemState('selected');
+            return;
+        }
+        else if((select[0] === index[0] && index[0] === 0) || (select[1] === index[1] && index[1] === 0)){
+            setItemState('material');
+        }
+        else if(select[0] === index[0] || select[1] === index[1]){
+            setItemState('line');
+        }
+        else {
+            setItemState('none');
+        }
+    }, [select])
+
     if(item == null){
         return (
             <Wrapper />
@@ -109,7 +138,7 @@ const Item = ({item, index, setSelect}: ItemProps) => {
     }
 
     return (
-        <Wrapper>
+        <Wrapper onClick={() => setSelect(index)}>
             <HoverDiv>
                 <HoverWrapper>
                     <HoverName>{item.name}</HoverName>
@@ -117,7 +146,9 @@ const Item = ({item, index, setSelect}: ItemProps) => {
                     {CombinationItemInfo()}
                 </HoverWrapper>
             </HoverDiv>
-            <Img src={item?item.image:``} normal={index[0] === 0 || index[1] === 0?1:0}/>
+            <Mask itemState={itemState}>
+                <Img src={item?item.image:``} normal={index[0] === 0 || index[1] === 0?1:0}/>
+            </Mask>
         </Wrapper>
     );
 };
