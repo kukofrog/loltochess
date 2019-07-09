@@ -3,11 +3,9 @@ import styled from 'styled-components';
 
 import ItemList from 'components/Item/ItemList';
 
-const Home = () => (
-    <>
-    Home
-    </>
+const Item = () => (
+    <ItemList />
 )
 
 
-export default Home;
+export default Item;
