@@ -55,7 +55,7 @@ const NavContainer = styled.div`
     align-items: center;
 
     padding-right: 1rem;
-    padding-left: 1rem;
+    padding-left: 5rem;
 `
 
 const NavItem = styled(NavLink)`
@@ -83,7 +83,7 @@ const HeaderContainer = () => {
         <Positioner>
             <WhiteBackground>
                 <HeaderContents>
-                    <Logo to='/'>lolto.net</Logo>
+                    <Logo to='/'>LOLTO.NET</Logo>
                     <NavContainer>
                         <NavItem to='/item' activeClassName="active">아이템</NavItem>
                     </NavContainer>
