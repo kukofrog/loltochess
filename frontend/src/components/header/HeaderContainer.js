@@ -83,7 +83,7 @@ const HeaderContainer = () => {
         <Positioner>
             <WhiteBackground>
                 <HeaderContents>
-                    <Logo to='/'>lolItem</Logo>
+                    <Logo to='/'>lolto.net</Logo>
                     <NavContainer>
                         <NavItem to='/item' activeClassName="active">아이템</NavItem>
                     </NavContainer>

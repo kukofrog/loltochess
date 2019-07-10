@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ItemList from 'components/Item/ItemList';
+import Intro from 'components/home/Intro';
+import Combination from 'components/home/Combination';
 
 const Home = () => (
     <>
-    Home
+    <Intro />
+    <Combination />
     </>
 )
 
