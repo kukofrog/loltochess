@@ -36,11 +36,18 @@ const ChampImg = styled.img`
     height: 54px;
 `
 
-const Champion = () => {
+interface ChampionProps {
+    champ: {
+        cost: number,
+        icon: string
+    }
+}
+
+const Champion = ({champ}: ChampionProps) => {
     return (
         <ChampImgWrapper>
-            <Cost>$1</Cost>
-            <ChampImg src="https://ddragon.leagueoflegends.com/cdn/9.12.1/img/champion/Kassadin.png" />
+            <Cost>${champ.cost}</Cost>
+            <ChampImg src={champ.icon} />
         </ChampImgWrapper>
     );
 };

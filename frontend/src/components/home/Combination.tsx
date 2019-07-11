@@ -4,6 +4,8 @@ import oc from 'open-color';
 
 import Champion from './Champion';
 
+import ChampionData from 'data/ChampionData';
+
 const Box = styled.div`
     width: 800px;
     height: 500px;
@@ -74,35 +76,6 @@ const ChampLineWrapper = styled.div`
 
 
 
-const ChampImgWrapper2 = styled.div`
-    position: relative;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    overflow: hidden;
-    border: 2px solid ${oc.teal[8]};
-`
-
-
-
-const Cost2 = styled.p`
-    position: absolute;
-    z-index: 5;
-    text-align: center;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 15px;
-    background-color: ${oc.teal[8]};
-    margin: 0;
-    margin-left: 5px;
-    font-size: 0.5rem;
-    color: white;
-    text-shadow: -1px 0 2px #000, 0 1px 2px #000, 1px 0 2px #000, 0 -1px 2px #000;
-`
-
-
-
 const Combination: React.FC = () => {
     return (
         <Box>
@@ -113,7 +86,7 @@ const Combination: React.FC = () => {
                             <CombImg src="https://static.lolchess.gg/images/tft/traiticons-white/trait_icon_sorcerer.png"/>
                         </CombImgWrapper>
                         <ChampLineWrapper>
-                            <Champion />
+                            <Champion champ={ChampionData.kassadin}/>
                         </ChampLineWrapper>
                     </CombLine>
                 </CombLineWrapper>
