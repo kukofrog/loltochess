@@ -14,10 +14,10 @@ const ChampImgWrapper = styled.div`
     overflow: hidden;
     border: 2px solid ${(props: Props) => {
             switch(props.cost){
-                case 1: return oc.gray[8];
+                case 1: return oc.gray[7];
                 case 2: return oc.teal[8];
-                case 3: return oc.blue[8];
-                case 4: return oc.violet[8];
+                case 3: return oc.blue[9];
+                case 4: return oc.violet[9];
                 case 5: return oc.yellow[8];
             }
         }
@@ -34,11 +34,11 @@ const Cost = styled.p`
     height: 15px;
     background-color: ${(props: Props) => {
             switch(props.cost){
-                case 1: return oc.gray[8];
+                case 1: return oc.gray[7];
                 case 2: return oc.teal[8];
                 case 3: return oc.blue[9];
                 case 4: return oc.violet[9];
-                case 5: return oc.yellow[7];
+                case 5: return oc.yellow[8];
             }
         }
     };

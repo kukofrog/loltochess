@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import oc from 'open-color';
 
 import Champion from './Champion';
+import JustItem from 'components/Item/JustItem';
 
 import ChampionData from 'data/ChampionData';
+import ItemData from 'data/CombinationItem';
 
 const Box = styled.div`
     width: 800px;
@@ -24,8 +26,11 @@ const Wrapper = styled.div`
 
 const CombLineWrapper = styled.div`
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     box-sizing: border-box;
     margin-bottom: 10px;
+    margin-left: 30px;
 `
 
 const CombLine = styled.div`
@@ -39,10 +44,13 @@ const CombLine = styled.div`
 const CombImgWrapper = styled.div`
     position: absolute;
     top: -1px;
-    left: -1px;
+    left: -30px;
     width: 30px;
-    height: 30px;
-    background-color: #5d72e0;
+    height: 76px;
+    background-color: ${oc.indigo[8]};
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 `
 
 const CombLine2 = styled.div`
@@ -56,10 +64,13 @@ const CombLine2 = styled.div`
 const CombImgWrapper2 = styled.div`
     position: absolute;
     top: -1px;
-    left: -1px;
+    left: -30px;
     width: 30px;
-    height: 30px;
-    background-color: #ff9776;
+    height: 76px;
+    background-color: ${oc.orange[5]};
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 `
 
 const CombImg = styled.img`
@@ -70,20 +81,38 @@ const CombImg = styled.img`
 
 const ChampLineWrapper = styled.div`
     padding: 10px;
-    padding-left: 30px;
+    padding-right: 0px;
     display: flex;
 `
 
+const CombName = styled.h2`
+    margin: 0;
+    color: white;
+    margin-bottom: 10px;
+`
 
+const SmallName = styled.h3`
+    margin: 0;
+    color: white;
+    margin-bottom: 5px;
+`
+
+const CombImgText = styled.p`
+    color: white;
+    margin: 0;
+`
 
 const Combination: React.FC = () => {
     return (
         <Box>
             <Wrapper>
+                <CombName>6마법사 솔라리</CombName>
+                <SmallName>핵심 조합</SmallName>
                 <CombLineWrapper>
                     <CombLine>
                         <CombImgWrapper>
                             <CombImg src="https://static.lolchess.gg/images/tft/traiticons-white/trait_icon_sorcerer.png"/>
+                            <CombImgText>6</CombImgText>
                         </CombImgWrapper>
                         <ChampLineWrapper>
                             <Champion champ={ChampionData.kassadin}/>
@@ -97,14 +126,19 @@ const Combination: React.FC = () => {
                         </ChampLineWrapper>
                     </CombLine>
                 </CombLineWrapper>
-
+                <SmallName>핵심 아이템</SmallName>
+                <JustItem item={ItemData.find((i) => i.name==="강철의 솔라리 펜던트")} />
+                <SmallName>추가 조합</SmallName>
                 <CombLineWrapper>
                     <CombLine2>
                         <CombImgWrapper2>
                             <CombImg src="https://static.lolchess.gg/images/tft/traiticons-white/trait_icon_yordle.png"/>
+                            <CombImgText>3</CombImgText>
                         </CombImgWrapper2>
                         <ChampLineWrapper>
-                            
+                            <Champion champ={ChampionData.lulu}/>
+                            <Champion champ={ChampionData.veigar}/>
+                            <Champion champ={ChampionData.kennen}/>
                         </ChampLineWrapper>
                     </CombLine2>
                 </CombLineWrapper>
