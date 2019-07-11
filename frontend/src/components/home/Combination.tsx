@@ -87,6 +87,13 @@ const Combination: React.FC = () => {
                         </CombImgWrapper>
                         <ChampLineWrapper>
                             <Champion champ={ChampionData.kassadin}/>
+                            <Champion champ={ChampionData.lulu}/>
+                            <Champion champ={ChampionData.ahri}/>
+                            <Champion champ={ChampionData.twistedfate}/>
+                            <Champion champ={ChampionData.morgana}/>
+                            <Champion champ={ChampionData.veigar}/>
+                            <Champion champ={ChampionData.aurelionsol}/>
+                            <Champion champ={ChampionData.karthus}/>
                         </ChampLineWrapper>
                     </CombLine>
                 </CombLineWrapper>
